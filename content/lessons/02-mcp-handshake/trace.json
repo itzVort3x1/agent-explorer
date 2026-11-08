@@ -1,0 +1,21 @@
+{
+  "id": "trace-mcp-handshake-02",
+  "mode": "normal",
+  "steps": [
+    {
+      "stepIndex": 1,
+      "title": "Initialize Request",
+      "description": "Client initiates handshake with MCP server.",
+      "status": "passed",
+      "message": {
+        "id": "msg-mcp-1",
+        "sender": "agent",
+        "recipient": "tool",
+        "timestamp": 1700000010,
+        "payload": {
+          "raw": "{\"jsonrpc\": \"2.0\", \"method\": \"initialize\", \"params\": {\"protocolVersion\": \"2024-11-05\"}}"
+        }
+      }
+    }
+  ]
+}

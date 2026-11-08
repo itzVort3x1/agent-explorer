@@ -1,0 +1,36 @@
+{
+  "id": "trace-tool-calling-01",
+  "mode": "normal",
+  "steps": [
+    {
+      "stepIndex": 1,
+      "title": "User Request",
+      "description": "User requests weather lookup for Tokyo.",
+      "status": "passed",
+      "message": {
+        "id": "msg-1",
+        "sender": "user",
+        "recipient": "agent",
+        "timestamp": 1700000000,
+        "payload": {
+          "raw": "What's the weather in Tokyo?"
+        }
+      }
+    },
+    {
+      "stepIndex": 2,
+      "title": "Tool Invocation",
+      "description": "Agent decides to invoke getWeather tool.",
+      "status": "passed",
+      "message": {
+        "id": "msg-2",
+        "sender": "agent",
+        "recipient": "tool",
+        "timestamp": 1700000001,
+        "payload": {
+          "raw": "{\"tool\": \"getWeather\", \"arguments\": {\"city\": \"Tokyo\"}}"
+        }
+      }
+    }
+  ]
+}
