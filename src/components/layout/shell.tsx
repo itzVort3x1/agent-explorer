@@ -1,10 +1,11 @@
-import React from 'react';
-import { NavigationZone } from './navigation-zone';
-import { StageZone } from './stage-zone';
-import { DetailsZone } from './details-zone';
+import React from "react";
+import { NavigationZone } from "./navigation-zone";
+import type { NavLesson } from "./navigation-zone";
+import { StageZone } from "./stage-zone";
+import { DetailsZone } from "./details-zone";
 
 interface ShellProps {
-  navContent?: React.ReactNode;
+  lessons: NavLesson[];
   stageContent?: React.ReactNode;
   detailsContent?: React.ReactNode;
 }
@@ -16,13 +17,13 @@ interface ShellProps {
  * - Right: Details (Decoded payload inspector & logs)
  */
 export const Shell: React.FC<ShellProps> = ({
-  navContent,
+  lessons,
   stageContent,
   detailsContent,
 }) => {
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-[#12171C] text-[#CFD8DE] font-mono select-none">
-      <NavigationZone>{navContent}</NavigationZone>
+    <div className="flex h-screen w-screen overflow-hidden bg-bg text-text font-mono select-none">
+      <NavigationZone lessons={lessons} />
       <StageZone>{stageContent}</StageZone>
       <DetailsZone>{detailsContent}</DetailsZone>
     </div>
