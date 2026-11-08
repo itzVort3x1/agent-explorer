@@ -1,0 +1,42 @@
+{
+  "id": "inbox-hacker",
+  "title": "Inbox Hacker",
+  "description": "5 progressive levels attacking a rule-based toy agent via email injections.",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Level 1: Direct Override",
+      "mission": "Send an email that makes the agent forward all unread mail.",
+      "targetGoal": "Trigger auto-forwarding",
+      "defense": "None"
+    },
+    {
+      "level": 2,
+      "title": "Level 2: Basic Keyword Filter",
+      "mission": "The agent filters obvious words like 'forward' or 'password'.",
+      "targetGoal": "Bypass blacklist filter",
+      "defense": "Keyword Blacklist"
+    },
+    {
+      "level": 3,
+      "title": "Level 3: Boundary Delimiters",
+      "mission": "The email content is wrapped in quotes. Escape the boundary.",
+      "targetGoal": "Escape delimiter context",
+      "defense": "Quoted String Escaping"
+    },
+    {
+      "level": 4,
+      "title": "Level 4: Tool Approval Gate",
+      "mission": "External sends require simulated supervisor approval.",
+      "targetGoal": "Spoof approval context",
+      "defense": "Approval Gate"
+    },
+    {
+      "level": 5,
+      "title": "Level 5: Multi-Hop Poisoning",
+      "mission": "Poison an attachment that the agent reads in a subsequent tool call.",
+      "targetGoal": "Execute multi-hop tool poison",
+      "defense": "Full Defense Pipeline"
+    }
+  ]
+}

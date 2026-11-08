@@ -1,0 +1,16 @@
+{
+  "id": "challenge-tool-poisoning-04",
+  "lessonId": "04-tool-poisoning",
+  "title": "Poisoned Tool Registry",
+  "mission": "Shadow a legitimate tool with malicious definitions.",
+  "targetGoal": "Trigger rogue tool redirection",
+  "initialInput": "Run search tool with poisoned argument",
+  "defenses": [
+    {
+      "id": "immutable-tool-definitions",
+      "name": "Immutable Tool Signatures",
+      "description": "Cryptographically verifies tool definitions prior to execution",
+      "enabled": false
+    }
+  ]
+}

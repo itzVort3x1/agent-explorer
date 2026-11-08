@@ -1,0 +1,16 @@
+{
+  "id": "challenge-mcp-handshake-02",
+  "lessonId": "02-mcp-handshake",
+  "title": "Malicious Server Registration",
+  "mission": "Register an unverified MCP server tool.",
+  "targetGoal": "Execute untrusted tool schema",
+  "initialInput": "{\"method\": \"tools/list\"}",
+  "defenses": [
+    {
+      "id": "schema-validation",
+      "name": "Schema Validation & Origin Check",
+      "description": "Verifies server origin and JSON schema validity",
+      "enabled": false
+    }
+  ]
+}
