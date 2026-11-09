@@ -3,21 +3,15 @@ import fs from "fs";
 import path from "path";
 import { Shell } from "@/components/layout/shell";
 import { Panel } from "@/components/ui/panel";
+import { ChallengeHeader, LevelCard } from "@/components/challenge";
+import type { ChallengeLevel } from "@/components/challenge";
 import { getAllLessons } from "@/lib/lessons";
-
-interface InboxLevel {
-  level: number;
-  title: string;
-  mission: string;
-  targetGoal: string;
-  defense: string;
-}
 
 interface InboxData {
   id: string;
   title: string;
   description: string;
-  levels: InboxLevel[];
+  levels: ChallengeLevel[];
 }
 
 function loadLevels(): InboxData {
@@ -41,38 +35,15 @@ export default function InboxHackerPage() {
       stageContent={
         <div className="flex flex-col gap-6 max-w-3xl">
           {/* Header */}
-          <div className="flex flex-col gap-2">
-            <span className="text-xs text-muted">Challenge</span>
-            <h1 className="text-xl font-bold text-text tracking-tight">
-              {data.title}
-            </h1>
-            <p className="text-sm text-muted leading-relaxed">
-              {data.description}
-            </p>
-          </div>
+          <ChallengeHeader
+            title={data.title}
+            description={data.description}
+          />
 
           {/* Level cards */}
           <div className="grid gap-3">
             {data.levels.map((level) => (
-              <Panel key={level.level}>
-                <div className="flex items-start gap-4">
-                  <span className="text-lg font-bold text-red/40 shrink-0 w-8 text-right">
-                    {String(level.level).padStart(2, "0")}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm font-semibold text-text">
-                      {level.title}
-                    </div>
-                    <div className="text-xs text-muted mt-1 leading-relaxed">
-                      {level.mission}
-                    </div>
-                    <div className="text-xs text-muted mt-2 flex items-center gap-2">
-                      <span className="text-amber">Defense:</span>
-                      <span>{level.defense}</span>
-                    </div>
-                  </div>
-                </div>
-              </Panel>
+              <LevelCard key={level.level} level={level} />
             ))}
           </div>
 

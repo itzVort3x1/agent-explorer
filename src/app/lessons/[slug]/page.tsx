@@ -1,22 +1,15 @@
 import React, { Suspense } from "react";
 import { Shell } from "@/components/layout/shell";
 import { Panel } from "@/components/ui/panel";
-import { Badge } from "@/components/ui/badge";
+import { TaintLegend } from "@/components/ui/taint-legend";
+import { LessonHeader, LessonStepper } from "@/components/lesson";
 import { getAllLessons, getLessonBySlug } from "@/lib/lessons";
-import type { LessonStep } from "@/contracts/lesson";
 
 interface LessonPageProps {
   params: Promise<{
     slug: string;
   }>;
 }
-
-const STEPS: { key: LessonStep; label: string; color: string }[] = [
-  { key: "watch", label: "Watch", color: "text-green" },
-  { key: "break", label: "Break", color: "text-red" },
-  { key: "patch", label: "Patch", color: "text-amber" },
-  { key: "attack_again", label: "Attack Again", color: "text-blue" },
-];
 
 export function generateStaticParams() {
   return [
@@ -41,38 +34,14 @@ async function LessonStageContent({
 
   return (
     <div className="flex flex-col gap-6 max-w-3xl">
-      <div className="flex flex-col gap-2">
-        <div className="flex items-center gap-3">
-          <span className="text-xs text-muted">
-            Lesson {lesson?.order ?? "?"}
-          </span>
-          <Badge status="SAFE" label={`~${lesson?.durationMinutes ?? 10} min`} />
-        </div>
-        <h1 className="text-xl font-bold text-text tracking-tight">
-          {title}
-        </h1>
-        <p className="text-sm text-muted leading-relaxed">{summary}</p>
-      </div>
+      <LessonHeader
+        order={lesson?.order}
+        durationMinutes={lesson?.durationMinutes}
+        title={title}
+        summary={summary}
+      />
 
-      <div className="flex items-center gap-1">
-        {STEPS.map((step, i) => (
-          <React.Fragment key={step.key}>
-            <div
-              className={`flex items-center gap-1.5 px-3 py-1.5 border border-line text-xs ${
-                i === 0
-                  ? "bg-green/10 text-green border-green/30"
-                  : "text-muted"
-              }`}
-            >
-              <span className="font-semibold">{i + 1}.</span>
-              <span>{step.label}</span>
-            </div>
-            {i < STEPS.length - 1 && (
-              <span className="text-line text-xs">→</span>
-            )}
-          </React.Fragment>
-        ))}
-      </div>
+      <LessonStepper activeIndex={0} />
 
       <Panel title="Trace Player">
         <div className="flex items-center justify-center h-48 text-muted text-xs">
@@ -96,25 +65,7 @@ function LessonStageFallback() {
         <div className="h-4 w-96 bg-line/40" />
       </div>
 
-      <div className="flex items-center gap-1">
-        {STEPS.map((step, i) => (
-          <React.Fragment key={step.key}>
-            <div
-              className={`flex items-center gap-1.5 px-3 py-1.5 border border-line text-xs ${
-                i === 0
-                  ? "bg-green/10 text-green border-green/30"
-                  : "text-muted"
-              }`}
-            >
-              <span className="font-semibold">{i + 1}.</span>
-              <span>{step.label}</span>
-            </div>
-            {i < STEPS.length - 1 && (
-              <span className="text-line text-xs">→</span>
-            )}
-          </React.Fragment>
-        ))}
-      </div>
+      <LessonStepper activeIndex={0} />
 
       <Panel title="Trace Player">
         <div className="flex items-center justify-center h-48 text-muted text-xs">
@@ -145,19 +96,7 @@ export default function LessonPage({ params }: LessonPageProps) {
             </div>
           </Panel>
 
-          <Panel title="Taint Tags">
-            <div className="flex flex-wrap gap-2">
-              <Badge status="SAFE" />
-              <Badge status="UNTRUSTED" />
-              <Badge status="TAINTED" />
-              <Badge status="BLOCKED" />
-              <Badge status="PASSED" />
-            </div>
-            <p className="text-xs text-muted mt-3 leading-relaxed">
-              Tags indicate data provenance. Color is always paired with a
-              label.
-            </p>
-          </Panel>
+          <TaintLegend />
         </div>
       }
     />
