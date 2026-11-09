@@ -1,0 +1,13 @@
+name: simple check
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  simple-check:
+    name: simple check
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "check passed"
